@@ -5,5 +5,22 @@
 </head>
 <body>
 
+<div th:replace="~{fragments/header :: header}"></div>
+<h3 th:text="${title}"></h3>
+<form th:action="@{/users}" method="post" >
+    <input type="hidden" name="userId" th:value="${user.getUserId()}">
+    姓名:<br>
+    <label>
+        <input type="text" name="userName" th:value="${user.getUserName()}"/>
+    </label><br>
+    邮箱:<br>
+    <label>
+        <input type="email" name="userEmail" th:value="${user.getUserEmail()}"/>
+    </label>
+    <input type="submit" value="提交"/>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
 </html>

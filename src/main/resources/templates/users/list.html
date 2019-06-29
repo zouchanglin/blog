@@ -6,6 +6,33 @@
 <body>
 
 <div th:replace="~{fragments/header :: header}"></div>
+<h3 th:text="${title}"></h3>
+<div>
+    <a th:href="@{/users/form}">创建用户</a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Email</td>
+            <td>Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:if="${userList.size() == 0}">
+            <td colspan="3">暂无用户信息</td>
+        </tr>
+        <tr th:each="user:${userList}">
+            <td th:text="${user.getUserId()}"></td>
+            <td th:text="${user.getUserEmail()}"></td>
+            <td>
+                <a th:href="@{'users/'+ ${user.getUserId()}}"  th:text="${user.getUserName()}"></a>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
