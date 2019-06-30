@@ -2,24 +2,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Thymeleaf in action</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script th:src="@{/bootstrap/script/jquery-3.4.1.min.js}" src="../static/bootstrap/script/jquery-3.4.1.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}" src="../static/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <div th:replace="~{fragments/header :: header}"></div>
-<h3 th:text="${title}"></h3>
-<form th:action="@{/users}" method="post" >
-    <input type="hidden" name="userId" th:value="${user.getUserId()}">
-    姓名:<br>
-    <label>
-        <input type="text" name="userName" th:value="${user.getUserName()}"/>
-    </label><br>
-    邮箱:<br>
-    <label>
-        <input type="email" name="userEmail" th:value="${user.getUserEmail()}"/>
-    </label>
-    <input type="submit" value="提交"/>
-</form>
-
+<div class="container">
+    <h3 th:text="${title}"></h3>
+</div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <form role="form" th:action="@{/users}" method="post">
+                <input type="hidden" name="userId" th:value="${user.getUserId()}">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">姓名</label><input type="text" class="form-control" id="exampleInputEmail1" name="userName" th:value="${user.getUserName()}"/>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">邮箱</label><input type="email" class="form-control" id="exampleInputPassword1" name="userEmail" th:value="${user.getUserEmail()}"/>
+                </div>
+                <button type="submit" class="btn btn-info">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>

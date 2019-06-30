@@ -1,6 +1,6 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
     url: jdbc:mysql://127.0.0.1/blog?characterEncoding=utf-8&useSSL=false
@@ -8,7 +8,12 @@ spring:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
-
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 127.0.0.1:9300
+  thymeleaf:
+    cache: false
 server:
   servlet:
     context-path: /

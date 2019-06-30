@@ -33,13 +33,27 @@ ElasticSearch自身有分布式的管理系统、而Solr是基于Zookeeper
 ```xml
 <dependencies>
     <dependency>
-        <groupId>net.java.dev.jna</groupId>
-        <artifactId>jna</artifactId>
-        <version>5.3.1</version>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-elasticsearch</artifactId>
     </dependency>
+
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
     </dependency>
 </dependencies>
 ```
+需要安装elasticsearch的版本是6.7.0
+
+# 权限管理
+
+
+![](https://s2.ax1x.com/2019/06/30/Z1zGZt.png)
+![](https://s2.ax1x.com/2019/06/30/Z3nGef.png)
+![](https://s2.ax1x.com/2019/06/30/Z3naWj.png)
+![](https://s2.ax1x.com/2019/06/30/Z3nDO0.png)
+![](https://s2.ax1x.com/2019/06/30/Z3n6TU.png)
+![](https://s2.ax1x.com/2019/06/30/Z3n2Y4.png)
+![](https://s2.ax1x.com/2019/06/30/Z3nfp9.png)
+![](https://s2.ax1x.com/2019/06/30/Z3nom6.png)
+
