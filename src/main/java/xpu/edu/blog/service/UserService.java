@@ -1,6 +1,6 @@
 package xpu.edu.blog.service;
 
-import xpu.edu.blog.domain.UserInfo;
+import xpu.edu.blog.entity.UserInfo;
 
 import java.util.List;
 

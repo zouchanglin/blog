@@ -3,10 +3,9 @@ package xpu.edu.blog.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import xpu.edu.blog.domain.UserInfo;
+import xpu.edu.blog.entity.UserInfo;
 import xpu.edu.blog.service.impl.UserServiceImpl;
 
 import java.util.Map;
@@ -15,8 +14,12 @@ import java.util.Map;
 @RequestMapping("/users")
 @Slf4j
 public class UserController {
+    private final UserServiceImpl userService;
+
     @Autowired
-    private UserServiceImpl userService;
+    public UserController(UserServiceImpl userService) {
+        this.userService = userService;
+    }
 
     /**
      * 展示所有用户

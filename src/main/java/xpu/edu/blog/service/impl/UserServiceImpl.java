@@ -2,7 +2,7 @@ package xpu.edu.blog.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xpu.edu.blog.domain.UserInfo;
+import xpu.edu.blog.entity.UserInfo;
 import xpu.edu.blog.repository.UserRepository;
 import xpu.edu.blog.service.UserService;
 import xpu.edu.blog.utils.KeyUtil;
