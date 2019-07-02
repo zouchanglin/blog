@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/signin.css}" href="../../static/bootstrap/css/signin.css" rel="stylesheet"/>
+    <script th:src="@{/bootstrap/script/jquery-3.4.1.min.js}" src="../../static/bootstrap/script/jquery-3.4.1.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}" src="../../static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" th:action="@{/user/login}" method="post">
+        <h3 class="form-signin-heading">用户登录</h3>
+        <label for="inputInfo">用户ID / 邮箱</label>
+        <input type="text" id="inputInfo" class="form-control" name="userIdOrEmail" placeholder="Email address Or UserId" required autofocus>
+        <label for="inputPassword" style="padding-top: 20px">登录密码</label>
+        <input type="password" id="inputPassword" name="userPassword" class="form-control" placeholder="Your Password" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> 30天内免登录
+            </label>
+        </div>
+        <button class="btn btn-lg btn-block btn-success" type="submit">登录</button>
+        <div style="padding-top: 8px">
+            <a href="/register">
+                <button class="btn btn-lg btn-primary btn-block" type="button">没有账号？去注册吧！</button>
+            </a>
+        </div>
+        <div th:if="${ret}" style="padding-top: 10px">
+            <div class="alert alert-danger" role="alert">
+                <a href="#" class="alert-link">用户名或者密码错误，请重试!!!</a>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

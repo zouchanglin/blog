@@ -25,7 +25,7 @@ public interface UserService {
      * 删除用户
      * @param userId 用户Id
      */
-    void deleteUser(String userId);
+    void deleteUser(Integer userId);
 
 
     /**
@@ -33,7 +33,7 @@ public interface UserService {
      * @param Id 用户Id
      * @return 用户信息
      */
-    UserInfo getUserById(String Id);
+    UserInfo getUserById(Integer Id);
 
 
     /**
@@ -41,4 +41,7 @@ public interface UserService {
      * @return 所有用户信息集合
      */
     List<UserInfo> listUsers();
+
+
+    UserInfo getUserBuIdOrEmail(String idEmail, String password);
 }

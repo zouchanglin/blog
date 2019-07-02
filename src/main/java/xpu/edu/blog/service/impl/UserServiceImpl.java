@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import xpu.edu.blog.entity.UserInfo;
 import xpu.edu.blog.repository.UserRepository;
 import xpu.edu.blog.service.UserService;
-import xpu.edu.blog.utils.KeyUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfo addUser(UserInfo userInfo) {
-        userInfo.setUserId(KeyUtil.genUniqueKey());
         return userRepository.save(userInfo);
     }
 
@@ -29,17 +27,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String userId) {
+    public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);
     }
 
     @Override
-    public UserInfo getUserById(String userId) {
+    public UserInfo getUserById(Integer userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
     @Override
     public List<UserInfo> listUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public UserInfo getUserBuIdOrEmail(String idEmail, String password) {
+        Integer id;
+        try{
+            id = Integer.parseInt(idEmail);
+            UserInfo userById = userRepository.findByUserIdAndUserPassword(id, password);
+            if(userById != null) return userById;
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+        }
+        return userRepository.findByUserEmailAndUserPassword(idEmail, password);
     }
 }

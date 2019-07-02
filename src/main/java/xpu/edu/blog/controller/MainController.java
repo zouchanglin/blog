@@ -1,36 +1,32 @@
 package xpu.edu.blog.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Map;
 
-/**
- * 主页控制器
- */
 @Controller
+@RequestMapping("/")
+@Slf4j
 public class MainController {
-    @GetMapping("/")
-    public String root(){
-        return "redirect:/index";
-    }
 
-    @GetMapping("/index")
-    public String index(){
+    @RequestMapping(value = {"/", "/index", "index.html"})
+    public String index(@CookieValue(value = "userId", required = false) String userId, Map<String, Object> map){
+        log.info("userId={}", userId);
+        if(userId != null) map.put("userId", userId);
         return "index";
     }
 
-    @GetMapping("/login")
-    public String login(){
-        return "login";
+    @RequestMapping(value = {"/login"})
+    public String login(Map<String, Object> map){
+        map.put("ret", false);
+        return "user/login";
     }
 
-    @GetMapping("/login-error")
-    public String loginError(Map<String, Object> map){
-        map.put("loginError", true);
-        map.put("errorMsg", "登录失败,用户名或者密码错误");
-        return "login";
+    @RequestMapping(value = {"/register"})
+    public String register(){
+        return "user/register";
     }
-
-    //TODO 8:20 11-3 11-4
 }

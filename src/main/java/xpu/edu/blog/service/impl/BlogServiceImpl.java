@@ -1,4 +1,4 @@
-package xpu.edu.blog.service;
+package xpu.edu.blog.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import xpu.edu.blog.entity.es.EsBlog;
 import xpu.edu.blog.repository.es.EsBlogRepository;
+import xpu.edu.blog.service.BlogService;
 
 @Service
 public class BlogServiceImpl implements BlogService {

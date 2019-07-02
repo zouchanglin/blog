@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/signin.css}" href="../../static/bootstrap/css/signin.css" rel="stylesheet"/>
+    <script th:src="@{/bootstrap/script/jquery-3.4.1.min.js}" src="../../static/bootstrap/script/jquery-3.4.1.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}" src="../../static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" th:action="@{/user/}" method="post">
+        <h3 class="form-signin-heading">用户注册</h3>
+        <label for="userName"> 用户昵称</label>
+        <input type="text" id="userName" class="form-control" name="userName" placeholder="Please Input Your Name" required autofocus>
+        <label for="userEmail" style="padding-top: 20px">用户邮箱</label>
+        <input type="email" id="userEmail" class="form-control" name="userEmail" placeholder="Please Input Your Email" required autofocus>
+        <label for="userPassword" style="padding-top: 20px ">登录密码</label>
+        <input type="password" id="userPassword" class="form-control" name="userPassword" placeholder="Please Input Your Password" required autofocus>
+        <button class="btn btn-lg btn-block btn-success" type="submit">Register Now!</button>
+    </form>
+</div>
+</body>
+</html>
