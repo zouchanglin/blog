@@ -4,9 +4,7 @@ package xpu.edu.blog.controller.user;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import xpu.edu.blog.entity.UserInfo;
 import xpu.edu.blog.service.UserService;
 
@@ -31,13 +29,14 @@ public class UserController {
             return "/user/login";
         }else{
             log.info("userInfo={}", findRet);
-            Cookie cookie = new Cookie("userId", findRet.getUserId().toString());
+            Cookie cookie = new Cookie("userId", findRet.getUserId());
             cookie.setPath("/");
             cookie.setMaxAge(3600 * 30);
             response.addCookie(cookie);
             return "redirect:/";
         }
     }
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
         Cookie[] cookies = request.getCookies();
@@ -51,9 +50,42 @@ public class UserController {
         return "redirect:/";
     }
 
+    @PostMapping("/update")
+    public String updateUserInfo(@CookieValue("userId") String id,
+                                 @RequestParam("userEmail") String userEmail,
+                                 @RequestParam("userName") String userName,
+                                 Map<String, Object> map){
+        UserInfo findResult = service.getUserById(id);
+        findResult.setUserEmail(userEmail);
+        findResult.setUserName(userName);
+        map.put("user", service.updateUser(findResult));
+        return "user/center/user_info";
+    }
 
     @GetMapping("/center")
     public String center(){
         return "user/center";
     }
+
+    @GetMapping("/user_info")
+    public String user_info(@CookieValue("userId") String id, Map<String, Object> map){
+        map.put("user", service.getUserById(id));
+        return "user/center/user_info";
+    }
+
+    @GetMapping("/user_blog")
+    public String user_blog(){
+        return "user/center/user_blog";
+    }
+
+    @GetMapping("/user_collect")
+    public String user_collect(){
+        return "user/center/user_collect";
+    }
+
+    @GetMapping("/user_discuss")
+    public String user_discuss(){
+        return "user/center/user_discuss";
+    }
+
 }

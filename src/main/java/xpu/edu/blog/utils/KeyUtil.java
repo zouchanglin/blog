@@ -13,8 +13,7 @@ public class KeyUtil {
      */
     public static synchronized String genUniqueKey() {
         Random random = new Random();
-        Integer number = random.nextInt(900) + 100;
-
+        Integer number = random.nextInt(9) + 1;
         return System.currentTimeMillis() + String.valueOf(number);
     }
 }

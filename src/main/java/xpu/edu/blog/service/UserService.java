@@ -25,15 +25,15 @@ public interface UserService {
      * 删除用户
      * @param userId 用户Id
      */
-    void deleteUser(Integer userId);
+    void deleteUser(String userId);
 
 
     /**
      * 查找用户
-     * @param Id 用户Id
+     * @param userId 用户Id
      * @return 用户信息
      */
-    UserInfo getUserById(Integer Id);
+    UserInfo getUserById(String userId);
 
 
     /**

@@ -27,12 +27,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Integer userId) {
+    public void deleteUser(String userId) {
         userRepository.deleteById(userId);
     }
 
     @Override
-    public UserInfo getUserById(Integer userId) {
+    public UserInfo getUserById(String userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
@@ -43,14 +43,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfo getUserBuIdOrEmail(String idEmail, String password) {
-        Integer id;
-        try{
-            id = Integer.parseInt(idEmail);
-            UserInfo userById = userRepository.findByUserIdAndUserPassword(id, password);
-            if(userById != null) return userById;
-        }catch (NumberFormatException e){
-            e.printStackTrace();
-        }
+        UserInfo userById = userRepository.findByUserIdAndUserPassword(idEmail, password);
+        if(userById != null) return userById;
         return userRepository.findByUserEmailAndUserPassword(idEmail, password);
     }
 }
