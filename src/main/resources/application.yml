@@ -14,6 +14,15 @@ spring:
       cluster-nodes: 127.0.0.1:9300
   thymeleaf:
     cache: false
+  servlet:
+    multipart:
+      max-file-size: 10485760
+      max-request-size: 104857600
+
 server:
   servlet:
     context-path: /
+
+fileupload:
+  blogUrl: http://localhost:8080
+  imgPath: /Users/zouchanglin/Desktop/blog_img/

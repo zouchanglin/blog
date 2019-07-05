@@ -41,8 +41,12 @@
                     <div class="col-md-4 column">
                         <form role="form" action="/user/update" method="post">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">邮箱</label>
-                                <input type="email" class="form-control" name="userEmail" th:value="${user.userEmail}" id="exampleInputEmail1" />
+                                <label for="userId">用户Id</label>
+                                <input type="email" readonly="readonly" class="form-control" name="userId" th:value="${user.userId}" id="userId" />
+                            </div>
+                            <div class="form-group">
+                                <label for="userEmail">邮箱</label>
+                                <input type="email" class="form-control" name="userEmail" th:value="${user.userEmail}" id="userEmail" />
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">用户名</label>
