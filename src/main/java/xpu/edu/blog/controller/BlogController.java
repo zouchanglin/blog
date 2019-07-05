@@ -1,5 +1,6 @@
 package xpu.edu.blog.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/blog")
+@Slf4j
 public class BlogController {
     @Autowired
     private BlogService blogService;
@@ -30,10 +32,17 @@ public class BlogController {
         return blog.getContent();
     }
 
+    @RequestMapping("/release")
+    public String release(@RequestParam("title") String title,
+                       @RequestParam("content") String content){
+        log.info("【BlogController】release title = {}, content={}", title, content);
+        return "user/center";
+    }
+
     @RequestMapping("/save")
     public String save(@RequestParam("title") String title,
                        @RequestParam("content") String content){
-        System.out.println(title + "\n" + content);
+        log.info("【BlogController】save title = {}, content={}", title, content);
         return "user/center";
     }
 
