@@ -4,19 +4,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import xpu.edu.blog.entity.BlogInfo;
 import xpu.edu.blog.entity.es.EsBlog;
+import xpu.edu.blog.repository.BlogInfoRepository;
 import xpu.edu.blog.repository.es.EsBlogRepository;
 import xpu.edu.blog.service.BlogService;
+import xpu.edu.blog.service.CategoryInfoService;
+import xpu.edu.blog.service.CategoryUserService;
 
 @Service
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
-    private EsBlogRepository repository;
+    private BlogInfoRepository blogInfoRepository;
+
+    @Autowired
+    private EsBlogRepository esBlogRepository;
+
+    @Autowired
+    private CategoryInfoService categoryInfoService;
+
+    @Autowired
+    private CategoryUserService categoryUserService;
 
 
     @Override
     public Page<EsBlog> findBlog(String title, String summary, String content, Pageable pageable) {
-        return repository.findDistinctEsBlogByTitleContainingOrSummaryContainingOrContentContaining(title, summary, content, pageable);
+        return esBlogRepository.findDistinctEsBlogByTitleContainingOrSummaryContainingOrContentContaining(title, summary, content, pageable);
+    }
+
+    @Override
+    public BlogInfo addBlog(BlogInfo blogInfo) {
+        categoryInfoService.addOneCategoryNum(blogInfo.getBlogCategory());
+        categoryUserService.addOneCategoryNum(blogInfo.getBlogUserCategory(), blogInfo.getAuthorId());
+        return blogInfoRepository.save(blogInfo);
+    }
+
+    @Override
+    public BlogInfo getById(String blogId) {
+        return blogInfoRepository.findById(blogId).orElse(null);
     }
 }

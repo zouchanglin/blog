@@ -46,6 +46,17 @@ public class BlogInfo implements Serializable {
      */
     private String blogHtmlContent;
 
+
+    /**
+     * 博客分类（总体分类）
+     */
+    private Integer blogCategory;
+
+    /**
+     * 博客分类（用户自己的分类）
+     */
+    private Integer blogUserCategory;
+
     /**
      * 访问量、阅读量
      */
@@ -79,4 +90,9 @@ public class BlogInfo implements Serializable {
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         this.blogHtmlContent = renderer.render(document);
     }
+
+    /**
+     * 原创、转载和翻译
+     */
+    private Integer blog_original = 0;
 }

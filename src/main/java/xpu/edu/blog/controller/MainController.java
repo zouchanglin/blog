@@ -29,4 +29,9 @@ public class MainController {
     public String register(){
         return "user/register";
     }
+
+    @RequestMapping(value = {"/404"})
+    public String error(){
+        return "404";
+    }
 }
