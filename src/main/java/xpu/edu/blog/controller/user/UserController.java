@@ -75,7 +75,8 @@ public class UserController {
 
     @GetMapping("/user_blog")
     public String user_blog(){
-        return "user/center/user_blog";
+        //return "user/center/user_blog";
+        return "redirect:/blog/my_list";
     }
 
     @GetMapping("/user_collect")

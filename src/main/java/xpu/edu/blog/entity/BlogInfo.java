@@ -5,6 +5,7 @@ import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -46,7 +47,6 @@ public class BlogInfo implements Serializable {
      */
     private String blogHtmlContent;
 
-
     /**
      * 博客分类（总体分类）
      */
@@ -75,11 +75,13 @@ public class BlogInfo implements Serializable {
     /**
      * 博客创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date createTime;
 
     /**
      * 博客最后修改时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date updateTime;
 
     public void setBlogContent(String blogContent){

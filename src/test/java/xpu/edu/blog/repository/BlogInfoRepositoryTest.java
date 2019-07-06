@@ -12,6 +12,7 @@ import xpu.edu.blog.utils.KeyUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -35,6 +36,14 @@ public class BlogInfoRepositoryTest {
             assertNotNull(save);
             FileUtils.writeStringToFile(new File("/Users/zouchanglin/Desktop/test.html"),
                     blogInfo.getBlogHtmlContent(), "UTF-8");
+        }
+    }
+
+    @Test
+    public void findMyAllBlog(){
+        List<BlogInfo> blogInfoList = repository.findAllByAuthorId("123456");
+        for(BlogInfo blogInfo: blogInfoList){
+            System.out.println(blogInfo);
         }
     }
 }

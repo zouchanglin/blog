@@ -31,7 +31,74 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
             <h1 class="page-header" style="padding-top: 0">博客管理</h1>
             <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    文章名称
+                                </th>
+                                <th>
+                                    新建时间
+                                </th>
+                                <th>
+                                    类型
+                                </th>
+                                <th>
+                                    阅读量
+                                </th>
+                                <th>
+                                    评论量
+                                </th>
+                                <th>
 
+                                </th>
+                                <th>
+
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="blogInfo: ${myBlogList}">
+                                <td th:text="${blogInfo.getBlogTitle()}">
+                                </td>
+                                <td th:text="${blogInfo.getCreateTime()}">
+                                    TB - Monthly
+                                </td>
+                                <td th:if="${blogInfo.getBlog_original() == 0}">
+                                    原创
+                                </td>
+                                <td th:if="${blogInfo.getBlog_original() == 1}">
+                                    翻译
+                                </td>
+                                <td th:if="${blogInfo.getBlog_original() == 2}">
+                                    转载
+                                </td>
+                                <td th:text="${blogInfo.getBlogReading()}">
+                                    Default
+                                </td>
+                                <td th:text="${blogInfo.getBlogComments()}">
+                                    Default
+                                </td>
+                                <!-- TODO博客的增删改查 -->
+                                <td>
+                                    <a href="#" class="btn btn-default">查看</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-default">编辑</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-danger">删除</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

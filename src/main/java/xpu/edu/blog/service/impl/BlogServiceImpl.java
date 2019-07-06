@@ -12,6 +12,8 @@ import xpu.edu.blog.service.BlogService;
 import xpu.edu.blog.service.CategoryInfoService;
 import xpu.edu.blog.service.CategoryUserService;
 
+import java.util.List;
+
 @Service
 public class BlogServiceImpl implements BlogService {
 
@@ -43,5 +45,10 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public BlogInfo getById(String blogId) {
         return blogInfoRepository.findById(blogId).orElse(null);
+    }
+
+    @Override
+    public List<BlogInfo> getAllByUserId(String userId) {
+        return blogInfoRepository.findAllByAuthorId(userId);
     }
 }

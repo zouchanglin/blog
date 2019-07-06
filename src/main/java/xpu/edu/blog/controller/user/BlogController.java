@@ -1,4 +1,4 @@
-package xpu.edu.blog.controller;
+package xpu.edu.blog.controller.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,15 @@ public class BlogController {
     @Autowired
     private FileUpLoadConfig fileUpLoadConfig;
 
+    @GetMapping("/my_list")
+    public String myBlogList(@CookieValue("userId") String userId, Map<String, Object> map){
+        List<BlogInfo> myBlogList = blogService.getAllByUserId(userId);
+        map.put("myBlogList", myBlogList);
+        return "user/center/user_blog";
+    }
+
     @ResponseBody
-    @GetMapping("/list")
+    @GetMapping("/find_list")
     public List<EsBlog> list(@RequestParam("title") String title,
                              @RequestParam("summary") String summary,
                              @RequestParam("context") String context,
