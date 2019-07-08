@@ -26,7 +26,7 @@ public class UserController {
         UserInfo findRet = service.getUserBuIdOrEmail(userIdOrEmail, userPassword);
         if(findRet == null){
             map.put("ret", true);
-            return "/user/login";
+            return "user/login";
         }else{
             log.info("userInfo={}", findRet);
             Cookie cookie = new Cookie("userId", findRet.getUserId());

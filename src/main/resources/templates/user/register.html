@@ -8,10 +8,12 @@
     <script th:src="@{/bootstrap/script/jquery-3.4.1.min.js}" src="../../static/bootstrap/script/jquery-3.4.1.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}" src="../../static/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="container">
+<body style="padding: 0">
+<nav th:replace="fragments/header_page :: header_page(null)"></nav>
+<div class="container" style="padding-top: 150px">
     <form class="form-signin" th:action="@{/user/}" method="post">
-        <h3 class="form-signin-heading">用户注册</h3>
+        <div style="text-align: center"><h3 class="form-signin-heading">用户注册</h3> </div>
+
         <label for="userName"> 用户昵称</label>
         <input type="text" id="userName" class="form-control" name="userName" placeholder="Please Input Your Name" required autofocus>
         <label for="userEmail" style="padding-top: 20px">用户邮箱</label>
