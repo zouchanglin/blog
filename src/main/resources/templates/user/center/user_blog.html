@@ -69,13 +69,13 @@
                                 <td th:text="${blogInfo.getCreateTime()}">
                                     TB - Monthly
                                 </td>
-                                <td th:if="${blogInfo.getBlog_original() == 0}">
+                                <td th:if="${blogInfo.getBlogOriginal() == 0}">
                                     原创
                                 </td>
-                                <td th:if="${blogInfo.getBlog_original() == 1}">
+                                <td th:if="${blogInfo.getBlogOriginal() == 1}">
                                     翻译
                                 </td>
-                                <td th:if="${blogInfo.getBlog_original() == 2}">
+                                <td th:if="${blogInfo.getBlogOriginal() == 2}">
                                     转载
                                 </td>
                                 <td th:text="${blogInfo.getBlogReading()}">

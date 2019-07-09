@@ -94,7 +94,12 @@ public class BlogInfo implements Serializable {
     }
 
     /**
-     * 原创、转载和翻译
+     * 类型(原创、转载、翻译)
      */
-    private Integer blog_original = 0;
+    private Integer blogOriginal = 0;
+
+    /**
+     * 审核情况（未审核、审核通过、未通过）
+     */
+    private Integer blogAudit = 0;
 }

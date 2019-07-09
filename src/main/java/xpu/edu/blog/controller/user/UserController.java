@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUserInfo(@CookieValue("userId") String id,
+    public String updateUserInfo(@CookieValue(value = "userId", required = false) String id,
                                  @RequestParam("userEmail") String userEmail,
                                  @RequestParam("userName") String userName,
                                  Map<String, Object> map){
@@ -63,13 +63,15 @@ public class UserController {
     }
 
     @GetMapping("/center")
-    public String center(){
+    public String center(@CookieValue(value = "userId", required = false) String userId){
+        if(userId == null) return "redirect:/login";
         return "user/center";
     }
 
     @GetMapping("/user_info")
-    public String user_info(@CookieValue("userId") String id, Map<String, Object> map){
-        map.put("user", service.getUserById(id));
+    public String user_info(@CookieValue(value = "userId", required = false) String userId, Map<String, Object> map){
+        if(userId == null) return "redirect:/login";
+        map.put("user", service.getUserById(userId));
         return "user/center/user_info";
     }
 

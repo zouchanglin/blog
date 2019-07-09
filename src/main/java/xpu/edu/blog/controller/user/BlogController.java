@@ -38,7 +38,8 @@ public class BlogController {
     private FileUpLoadConfig fileUpLoadConfig;
 
     @GetMapping("/my_list")
-    public String myBlogList(@CookieValue("userId") String userId, Map<String, Object> map){
+    public String myBlogList(@CookieValue(value = "userId", required = false) String userId, Map<String, Object> map){
+        if(userId == null) return "redirect:/login";
         List<BlogInfo> myBlogList = blogService.getAllByUserId(userId);
         map.put("myBlogList", myBlogList);
         return "user/center/user_blog";
@@ -57,7 +58,7 @@ public class BlogController {
 
     @ResponseBody
     @RequestMapping("/release")
-    public String release(@CookieValue("userId") String userId, BlogForm blogForm){
+    public String release(@CookieValue(value = "userId", required = false) String userId, BlogForm blogForm){
         log.info("【BlogController】release = {}", blogForm);
         if(userId == null) return fileUpLoadConfig.getBlogUrl() + "/404";
 
@@ -84,10 +85,10 @@ public class BlogController {
 
 
     @GetMapping("/edit")
-    public String edit(@CookieValue("userId") String userId, Map<String, Object> map){
+    public String edit(@CookieValue(value = "userId",required = false) String userId, Map<String, Object> map){
+        if(userId == null) return "redirect:/login";
         List<CategoryInfo> allCategory = categoryService.getAllCategory();
         //这里不是查找所有分类，而是查找该用户的所有分类
-        //List<CategoryUser> allCategoryUser = categoryUserService.getAllCategoryUser();
         List<CategoryUser> allCategoryUser = categoryUserService.getAllCategoryByUserId(userId);
         log.info("allCategoryUser={}", allCategoryUser);
         map.put("allCategory", allCategory);
