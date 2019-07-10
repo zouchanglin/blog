@@ -8,6 +8,10 @@ import lombok.Data;
 @Data
 public class BlogForm {
     /**
+     * 文章Id
+     */
+    private String blogid;
+    /**
      * 文章标题
      */
     private String title;

@@ -6,6 +6,7 @@ import xpu.edu.blog.form.BlogForm;
 public class Form2BlogInfo {
     public static BlogInfo blogForm2BlogInfo(BlogForm blogForm){
         BlogInfo blogInfo = new BlogInfo();
+        blogInfo.setBlogId(blogForm.getBlogid());
         blogInfo.setBlogTitle(blogForm.getTitle());
         blogInfo.setBlogSummary(blogForm.getSummary());
         blogInfo.setBlogContent(blogForm.getContent());

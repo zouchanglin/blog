@@ -31,74 +31,283 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
 <!--            <h1 class="page-header" style="padding-top: 0">博客管理</h1>-->
             <div class="container-fluid">
+
                 <div class="row clearfix">
                     <div class="col-md-12 column">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>
-                                    文章名称
-                                </th>
-                                <th>
-                                    新建时间
-                                </th>
-                                <th>
-                                    类型
-                                </th>
-                                <th>
-                                    阅读量
-                                </th>
-                                <th>
-                                    评论量
-                                </th>
-                                <th>
+                        <div class="tabbable" id="tabs-660927">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#panel-294012" data-toggle="tab">已经发布</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-354279" data-toggle="tab">草稿箱</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-354277" data-toggle="tab">回收站</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="panel-294012">
+                                    <div class="row clearfix">
+                                        <div class="col-md-12 column">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        文章名称
+                                                    </th>
+                                                    <th>
+                                                        新建时间
+                                                    </th>
+                                                    <th>
+                                                        类型
+                                                    </th>
+                                                    <th>
+                                                        阅读
+                                                    </th>
+                                                    <th>
+                                                        评论
+                                                    </th>
+                                                    <th>
+                                                        点赞
+                                                    </th>
+                                                    <th>
 
-                                </th>
-                                <th>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="blogInfo: ${myBlogList}">
+                                                    <td th:text="${blogInfo.getBlogTitle()}">
+                                                    </td>
+                                                    <td th:text="${blogInfo.getCreateTime()}">
+                                                        TB - Monthly
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 0}">
+                                                        原创
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 1}">
+                                                        翻译
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 2}">
+                                                        转载
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogReading()}">
+                                                        0
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogComments()}">
+                                                        0
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogLikes()}">
+                                                        0
+                                                    </td>
+                                                    <!-- TODO博客的增删改查 -->
+                                                    <td>
+                                                        <a th:href="@{'/blog/edit_update?blogId='+${blogInfo.getBlogId()}}"
+                                                           class="btn btn-success">编辑</a>
+                                                        <a th:href="@{'/blog/delete?blogId='+${blogInfo.getBlogId()}}"
+                                                           class="btn btn-danger">删除</a>
+                                                        <a th:href="@{'/blog/releaseToSave?blogId='+${blogInfo.getBlogId()}}"
+                                                           class="btn btn-primary">设为草稿</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-12 column">
+                                            <ul class="pagination">
+                                                <li>
+                                                    <a href="#">Prev</a>
+                                                </li>
+                                                <li th:each="pageNo : ${#numbers.sequence(0, myBlogListPage - 1)}" >
+                                                    <a th:href="@{'/blog/my_list?pageIndex='+ ${pageNo}}" th:text="${pageNo}">Prev</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                </th>
-                                <th>
+                                <div class="tab-pane" id="panel-354279">
+                                    <div class="row clearfix">
+                                        <div class="col-md-12 column">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        文章名称
+                                                    </th>
+                                                    <th>
+                                                        新建时间
+                                                    </th>
+                                                    <th>
+                                                        类型
+                                                    </th>
+                                                    <th>
+                                                        阅读
+                                                    </th>
+                                                    <th>
+                                                        评论
+                                                    </th>
+                                                    <th>
+                                                        点赞
+                                                    </th>
+                                                    <th>
 
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="blogInfo: ${myBlogList}">
-                                <td th:text="${blogInfo.getBlogTitle()}">
-                                </td>
-                                <td th:text="${blogInfo.getCreateTime()}">
-                                    TB - Monthly
-                                </td>
-                                <td th:if="${blogInfo.getBlogOriginal() == 0}">
-                                    原创
-                                </td>
-                                <td th:if="${blogInfo.getBlogOriginal() == 1}">
-                                    翻译
-                                </td>
-                                <td th:if="${blogInfo.getBlogOriginal() == 2}">
-                                    转载
-                                </td>
-                                <td th:text="${blogInfo.getBlogReading()}">
-                                    Default
-                                </td>
-                                <td th:text="${blogInfo.getBlogComments()}">
-                                    Default
-                                </td>
-                                <!-- TODO博客的增删改查 -->
-                                <td>
-                                    <a href="#" class="btn btn-default">查看</a>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-default">编辑</a>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-danger">删除</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="blogInfo: ${myBlogList2}">
+                                                    <td th:text="${blogInfo.getBlogTitle()}">
+                                                    </td>
+                                                    <td th:text="${blogInfo.getCreateTime()}">
+                                                        TB - Monthly
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 0}">
+                                                        原创
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 1}">
+                                                        翻译
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 2}">
+                                                        转载
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogReading()}">
+                                                        0
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogComments()}">
+                                                        0
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogLikes()}">
+                                                        0
+                                                    </td>
+                                                    <!-- TODO博客的增删改查 -->
+                                                    <td>
+                                                        <a th:href="@{'/blog/edit_update?blogId='+${blogInfo.getBlogId()}}"
+                                                           class="btn btn-success">编辑</a>
+                                                        <a th:href="@{'/blog/delete?blogId='+${blogInfo.getBlogId()}}"
+                                                           class="btn btn-danger">删除</a>
+<!--                                                        <a th:href="@{'/blog/save?blogId='+${blogInfo.getBlogId()}}"-->
+<!--                                                           class="btn btn-primary">发布</a>-->
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-12 column">
+                                            <ul class="pagination">
+                                                <li>
+                                                    <a href="#">Prev</a>
+                                                </li>
+                                                <li th:each="pageNo : ${#numbers.sequence(0, myBlogListPage2 - 1)}" >
+                                                    <a th:href="@{'/blog/my_list?pageIndex='+ ${pageNo}}" th:text="${pageNo}">Prev</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="panel-354277">
+                                    <div class="row clearfix">
+                                        <div class="col-md-12 column">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        文章名称
+                                                    </th>
+                                                    <th>
+                                                        新建时间
+                                                    </th>
+                                                    <th>
+                                                        类型
+                                                    </th>
+                                                    <th>
+                                                        阅读
+                                                    </th>
+                                                    <th>
+                                                        评论
+                                                    </th>
+                                                    <th>
+                                                        点赞
+                                                    </th>
+                                                    <th>
+
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="blogInfo: ${myBlogList3}">
+                                                    <td th:text="${blogInfo.getBlogTitle()}">
+                                                    </td>
+                                                    <td th:text="${blogInfo.getCreateTime()}">
+                                                        TB - Monthly
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 0}">
+                                                        原创
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 1}">
+                                                        翻译
+                                                    </td>
+                                                    <td th:if="${blogInfo.getBlogOriginal() == 2}">
+                                                        转载
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogReading()}">
+                                                        0
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogComments()}">
+                                                        0
+                                                    </td>
+                                                    <td th:text="${blogInfo.getBlogLikes()}">
+                                                        0
+                                                    </td>
+                                                    <!-- TODO博客的增删改查 -->
+                                                    <td>
+<!--                                                        <a th:href="@{'/blog/edit_update?blogId='+${blogInfo.getBlogId()}}"-->
+<!--                                                           class="btn btn-success">编辑</a>-->
+                                                        <a th:href="@{'/blog/rel_delete?blogId='+${blogInfo.getBlogId()}}"
+                                                           class="btn btn-danger">彻底删除</a>
+                                                        <a th:href="@{'/blog/releaseToSave?blogId='+${blogInfo.getBlogId()}}"
+                                                           class="btn btn-primary">设为草稿</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-12 column">
+                                            <ul class="pagination">
+                                                <li>
+                                                    <a href="#">Prev</a>
+                                                </li>
+                                                <li th:each="pageNo : ${#numbers.sequence(0, myBlogListPage3 - 1)}" >
+                                                    <a th:href="@{'/blog/my_list?pageIndex='+ ${pageNo}}" th:text="${pageNo}">Prev</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+
             </div>
         </div>
     </div>

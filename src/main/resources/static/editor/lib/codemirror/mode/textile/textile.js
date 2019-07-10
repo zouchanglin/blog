@@ -106,7 +106,7 @@
       return togglePhraseModifier(stream, state, "span", /%/, 1);
 
     if (ch === "@")
-      return togglePhraseModifier(stream, state, "code", /@/, 1);
+      return togglePhraseModifier(stream, state, "static.code", /@/, 1);
 
     if (ch === "!") {
       var type = togglePhraseModifier(stream, state, "image", /(?:\([^\)]+\))?!/, 1);
@@ -141,7 +141,7 @@
     if (state.layoutType) styles.push(TOKEN_STYLES[state.layoutType]);
 
     styles = styles.concat(activeStyles(
-      state, "addition", "bold", "cite", "code", "deletion", "em", "footCite",
+      state, "addition", "bold", "cite", "static.code", "deletion", "em", "footCite",
       "image", "italic", "link", "span", "strong", "sub", "sup", "table", "tableHeading"));
 
     if (state.layoutType === "header")
@@ -155,7 +155,7 @@
 
     switch(type) {
     case "notextile":
-    case "code":
+    case "static.code":
     case "pre":
       return TOKEN_STYLES[type];
     default:
@@ -326,7 +326,7 @@
       } else if (type.match(RE("bq"))) {
         state.layoutType = "quote";
       } else if (type.match(RE("bc"))) {
-        state.layoutType = "code";
+        state.layoutType = "static.code";
       } else if (type.match(RE("foot"))) {
         state.layoutType = "footnote";
       } else if (type.match(RE("notextile"))) {

@@ -16,4 +16,8 @@ public interface BlogService {
     BlogInfo getById(String blogId);
 
     List<BlogInfo> getAllByUserId(String userId);
+
+    Page<BlogInfo> getAllByUserAndStatus(String userId, Integer auditStatus, Pageable pageable);
+
+    void deleteBlog(String blogId);
 }

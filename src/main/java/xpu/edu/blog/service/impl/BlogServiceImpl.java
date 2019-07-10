@@ -37,8 +37,11 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public BlogInfo addBlog(BlogInfo blogInfo) {
-        categoryInfoService.addOneCategoryNum(blogInfo.getBlogCategory());
-        categoryUserService.addOneCategoryNum(blogInfo.getBlogUserCategory(), blogInfo.getAuthorId());
+        if(blogInfo.getBlogCategory() != null)
+            categoryInfoService.addOneCategoryNum(blogInfo.getBlogCategory());
+
+        if(blogInfo.getBlogUserCategory() != null)
+            categoryUserService.addOneCategoryNum(blogInfo.getBlogUserCategory(), blogInfo.getAuthorId());
         return blogInfoRepository.save(blogInfo);
     }
 
@@ -50,5 +53,15 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<BlogInfo> getAllByUserId(String userId) {
         return blogInfoRepository.findAllByAuthorId(userId);
+    }
+
+    @Override
+    public Page<BlogInfo> getAllByUserAndStatus(String userId, Integer auditStatus, Pageable pageable) {
+        return blogInfoRepository.findAllByAuthorIdAndBlogAudit(userId, auditStatus, pageable);
+    }
+
+    @Override
+    public void deleteBlog(String blogId) {
+        blogInfoRepository.deleteById(blogId);
     }
 }

@@ -369,7 +369,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
     // If this block is changed, it may need to be updated in GFM mode
     if (ch === '`') {
       var previousFormatting = state.formatting;
-      if (modeCfg.highlightFormatting) state.formatting = "code";
+      if (modeCfg.highlightFormatting) state.formatting = "static.code";
       var t = getType(state);
       var before = stream.pos;
       stream.eatWhile('`');

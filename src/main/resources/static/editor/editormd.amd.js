@@ -139,7 +139,7 @@
             "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|", 
             "h1", "h2", "h3", "h4", "h5", "h6", "|", 
             "list-ul", "list-ol", "hr", "|",
-            "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+            "link", "reference-link", "image", "static.code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
             "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
             "help", "info"
         ],
@@ -3282,7 +3282,7 @@
         "Ctrl-Alt-G"   : "goto-line",
         "Ctrl-H"       : "hr",
         "Ctrl-I"       : "italic",
-        "Ctrl-K"       : "code",
+        "Ctrl-K"       : "static.code",
         
         "Ctrl-L"        : function() {
             var cm        = this.cm;
@@ -3317,7 +3317,7 @@
             }
         },
         
-        "Shift-Ctrl-C"     : "code",
+        "Shift-Ctrl-C"     : "static.code",
         "Shift-Ctrl-Q"     : "quote",
         "Shift-Ctrl-S"     : "del",
         "Shift-Ctrl-K"     : "tex",  // KaTeX

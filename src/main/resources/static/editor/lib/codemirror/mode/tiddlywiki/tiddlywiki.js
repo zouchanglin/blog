@@ -98,10 +98,10 @@ CodeMirror.defineMode("tiddlywiki", function () {
         return ret('quote', 'quote');
       }
       if (stream.match(reWikiCommentStart) || stream.match(reWikiCommentStop)) {
-        return ret('code', 'comment');
+        return ret('static.code', 'comment');
       }
       if (stream.match(reJsCodeStart) || stream.match(reJsCodeStop) || stream.match(reXmlCodeStart) || stream.match(reXmlCodeStop)) {
-        return ret('code', 'comment');
+        return ret('static.code', 'comment');
       }
       if (stream.match(reHR)) {
         return ret('hr', 'hr');
@@ -250,21 +250,21 @@ CodeMirror.defineMode("tiddlywiki", function () {
     var ch, sb = state.block;
 
     if (sb && stream.current()) {
-      return ret("code", "comment");
+      return ret("static.code", "comment");
     }
 
     if (!sb && stream.match(reUntilCodeStop)) {
       state.tokenize = jsTokenBase;
-      return ret("code", "comment");
+      return ret("static.code", "comment");
     }
 
     if (sb && stream.sol() && stream.match(reCodeBlockStop)) {
       state.tokenize = jsTokenBase;
-      return ret("code", "comment");
+      return ret("static.code", "comment");
     }
 
     ch = stream.next();
-    return (sb) ? ret("code", "comment") : ret("code", "comment");
+    return (sb) ? ret("static.code", "comment") : ret("static.code", "comment");
   }
 
   // tw em / italic
