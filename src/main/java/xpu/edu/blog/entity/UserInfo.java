@@ -45,6 +45,16 @@ public class UserInfo {
      */
     private Integer userComment;
 
+    /**
+     * 访问数量
+     */
+    private Integer userRead;
+
+    /**
+     * 粉丝数
+     */
+    private Integer userFans;
+
     private Date createTime;
 
     private Date updateTime;

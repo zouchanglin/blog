@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${blog_info.getBlogTitle()}"></title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/dash-board.css}" href="../../static/bootstrap/css/dash-board.css" rel="stylesheet"/>
+    <link th:href="@{/bootstrap/css/site-min.css}" href="../../static/bootstrap/css/site-min.css" rel="stylesheet"/>
+    <script th:src="@{/bootstrap/script/jquery-3.4.1.min.js}" src="../../static/bootstrap/script/jquery-3.4.1.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}" src="../../static/bootstrap/js/bootstrap.min.js"></script>
+    <script th:src="@{/editor/lib/marked.min.js}" src="../../static/editor/lib/marked.min.js"></script>
+    <script th:src="@{/editor/lib/prettify.min.js}" src="../../static/editor/lib/prettify.min.js"></script>
+    <script th:src="@{/editor/editormd.min.js}" src="../../static/editor/editormd.min.js"></script>
+    <link th:href="@{/editor/css/editormd.css}" rel="stylesheet" href="../../static/editor/css/editormd.css" />
+    <link th:href="@{/editor/css/editormd.preview.min.css}" rel="stylesheet" href="../../static/editor/css/editormd.preview.min.css" />
+    <script>
+    </script>
+</head>
+<body style="padding-top: 60px">
+<nav th:replace="fragments/header_page :: header_page(${userId})"></nav>
+<div class="container-fluid">
+            <div  class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            个人资料
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row clearfix">
+                            <div class="col-md-4 column" style="padding-right: 0">
+                                <img th:src="@{/head.png}" src="../../static/head.png" style="width: 60px; height: 60px; border-radius: 40px">
+                            </div>
+                            <div class="col-md-8 column" style="padding: 0">
+                                <div style="font-size: 18px; text-align: left; padding-top: 10px" th:text="${user_data.getUserName()}">Tim的技术博客</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <table class="table" style="border: 0; border-top: transparent">
+                            <thead>
+                            <tr>
+                                <th>
+                                    访问
+                                </th>
+                                <th>
+                                    原创
+                                </th>
+                                <th>
+                                    粉丝
+                                </th>
+                                <th>
+                                    贡献
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td th:text="${user_data.getUserRead()}">
+                                    1.3K
+                                </td>
+                                <td th:text="${user_data.getUserPages()}">
+                                    255
+                                </td>
+                                <td th:text="${user_data.getUserFans()}">
+                                    304
+                                </td>
+                                <td th:text="${user_data.getUserComment()}">
+                                    3306
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            个人分类
+                        </h3>
+                    </div>
+                    <div th:each="category: ${allCategoryUser}" class="panel-body">
+                        <a href="/blog/my_list" th:text="${category.getCategoryName()}">AAA</a><br>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            最新文章
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <a href="/blog/my_list">AAA</a><br>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="/blog/my_list">AAA</a><br>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            最热文章
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <a href="/blog/my_list">AAA</a><br>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="/blog/my_list">AAA</a><br>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            最新评论
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <a href="/blog/my_list">AAA</a><br>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="/blog/my_list">AAA</a><br>
+                    </div>
+                </div>
+                <div class="panel panel-primary" id="mydiv">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            文章目录
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="mytoc">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9" style="background-color: transparent;">
+                <!-- 因为我们使用了dark主题，所以在容器div上加上dark的主题类，实现我们自定义的代码样式 -->
+                <h1 th:text="'《' +${blog_info.getBlogTitle()} + '》'"></h1>
+                <div id="testEditorMdview" class="content editormd-preview-container">
+                    <textarea id="appendTest" style="display: none" th:text="${blog_info.getBlogContent()}"></textarea>
+                </div>
+            </div>
+</div>
+
+<script type="text/javascript">
+
+
+    // window.onload = function (ev) {
+    //     var hei = document.body.scrollHeight;
+    //     alert(hei);
+    //     var byId = document.getElementById("mydiv");
+    //     byId.style.height = hei;
+    //     alert(hei)
+    //     byId.style.backgroundColor = "red";
+    // }
+    //window.onload = function (ev) {
+    //    $('.col-md-3').css("height",$('.col-md-9').height())
+    //}
+
+    $(document).ready(function () {
+        var hei = document.body.scrollHeight;
+        //TODO 文章目录结构设置
+        //监听网页滚动
+        // $(window).scroll(function () {
+        //     console.log("clientHeight" + document.documentElement.clientHeight);
+        //     var oTop = document.body.scrollTop == 0?document.documentElement.scrollTop:document.body.scrollTop;//偏移量
+        //     console.log("oTop"+oTop);
+        //     console.log("网页正文 " + hei)
+        //     var mydiv = document.getElementById("mydiv");
+        //     console.log(mydiv != null);
+        //     mydiv.style.marginTop = oTop - 400 + "px";
+        //     if(oTop == 0){
+        //         mydiv.style.paddingTop = 0 + "px";
+        //     }
+        // })
+    });
+
+    //转换开始,第一个参数是上面的div的id
+    editormd.markdownToHTML("testEditorMdview", {
+        htmlDecode: "style,script,iframe", //可以过滤标签解码
+        emoji: true,
+        taskList:true,
+        tex: true,               // 默认不解析
+        flowChart:true,         // 默认不解析
+        sequenceDiagram:true,  // 默认不解析
+        toc: true,
+        tocTitle: "文章目录",
+        tocContainer: $("#mytoc")
+    });
+</script>
+</body>
+</html>
