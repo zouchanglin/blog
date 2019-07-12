@@ -5,14 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import xpu.edu.blog.entity.BlogInfo;
-import xpu.edu.blog.entity.es.EsBlog;
+import xpu.edu.blog.entity.search.EsBlog;
 import xpu.edu.blog.repository.BlogInfoRepository;
-import xpu.edu.blog.repository.es.EsBlogRepository;
+import xpu.edu.blog.repository.search.EsBlogRepository;
 import xpu.edu.blog.service.BlogService;
 import xpu.edu.blog.service.CategoryInfoService;
-import xpu.edu.blog.service.CategoryUserService;
-
-import java.util.List;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -26,9 +23,6 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private CategoryInfoService categoryInfoService;
 
-    @Autowired
-    private CategoryUserService categoryUserService;
-
 
     @Override
     public Page<EsBlog> findBlog(String title, String summary, String content, Pageable pageable) {
@@ -39,9 +33,6 @@ public class BlogServiceImpl implements BlogService {
     public BlogInfo addBlog(BlogInfo blogInfo) {
         if(blogInfo.getBlogCategory() != null)
             categoryInfoService.addOneCategoryNum(blogInfo.getBlogCategory());
-
-        if(blogInfo.getBlogUserCategory() != null)
-            categoryUserService.addOneCategoryNum(blogInfo.getBlogUserCategory(), blogInfo.getAuthorId());
         return blogInfoRepository.save(blogInfo);
     }
 
@@ -51,13 +42,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogInfo> getAllByUserId(String userId) {
-        return blogInfoRepository.findAllByAuthorId(userId);
-    }
-
-    @Override
-    public Page<BlogInfo> getAllByUserAndStatus(String userId, Integer auditStatus, Pageable pageable) {
-        return blogInfoRepository.findAllByAuthorIdAndBlogAudit(userId, auditStatus, pageable);
+    public Page<BlogInfo> getAllByStatus(Integer auditStatus, Pageable pageable) {
+         return blogInfoRepository.findAllByBlogAudit(auditStatus, pageable);
     }
 
     @Override

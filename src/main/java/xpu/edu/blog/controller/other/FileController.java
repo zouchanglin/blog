@@ -1,4 +1,4 @@
-package xpu.edu.blog.controller;
+package xpu.edu.blog.controller.other;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

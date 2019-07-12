@@ -246,7 +246,7 @@
             animation-fill-mode: $mode;
 }
 
-// user-select
+// admin-select
 
 @mixin user-select($type) {
     -webkit-user-select: $type;

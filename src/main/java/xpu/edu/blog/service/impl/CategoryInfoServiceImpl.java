@@ -34,8 +34,7 @@ public class CategoryInfoServiceImpl implements CategoryInfoService {
         if(byId.isPresent()){
             CategoryInfo categoryInfo = byId.get();
             categoryInfo.setCategoryNum(categoryInfo.getCategoryNum() + 1);
-            CategoryInfo save = categoryInfoRep.save(categoryInfo);
-            log.info("CategoryInfoServiceImpl addOneCategoryNum save={}", save);
+            categoryInfoRep.save(categoryInfo);
         }else{
             throw new BlogException(ResultEnum.PARAM_ERROR);
         }

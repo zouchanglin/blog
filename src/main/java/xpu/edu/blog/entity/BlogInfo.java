@@ -1,8 +1,5 @@
 package xpu.edu.blog.entity;
 
-import com.vladsch.flexmark.html.HtmlRenderer;
-import com.vladsch.flexmark.parser.Parser;
-import com.vladsch.flexmark.util.ast.Node;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,11 +20,6 @@ public class BlogInfo implements Serializable {
     private String blogId;
 
     /**
-     * 作者Id
-     */
-    private String authorId;
-
-    /**
      * 标题
      */
     private String blogTitle;
@@ -43,19 +35,9 @@ public class BlogInfo implements Serializable {
     private String blogContent;
 
     /**
-     * 内容（转为html后的内容）
-     */
-    private String blogHtmlContent;
-
-    /**
      * 博客分类（总体分类）
      */
     private Integer blogCategory;
-
-    /**
-     * 博客分类（用户自己的分类）
-     */
-    private Integer blogUserCategory;
 
     /**
      * 访问量、阅读量
@@ -73,6 +55,16 @@ public class BlogInfo implements Serializable {
     private Integer blogLikes = 0;
 
     /**
+     * 类型(原创、转载、翻译)
+     */
+    private Integer blogOriginal = 0;
+
+    /**
+     * 发布情况（草稿、已经发布、已删除）
+     */
+    private Integer blogAudit = 0;
+
+    /**
      * 博客创建时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -83,23 +75,4 @@ public class BlogInfo implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date updateTime;
-
-    public void setBlogContent(String blogContent){
-        this.blogContent = blogContent;
-
-        Parser parser = Parser.builder().build();
-        Node document = parser.parse(blogContent);
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
-        this.blogHtmlContent = renderer.render(document);
-    }
-
-    /**
-     * 类型(原创、转载、翻译)
-     */
-    private Integer blogOriginal = 0;
-
-    /**
-     * 审核情况（未审核、审核通过、未通过）
-     */
-    private Integer blogAudit = 0;
 }

@@ -3,21 +3,45 @@ package xpu.edu.blog.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import xpu.edu.blog.entity.BlogInfo;
-import xpu.edu.blog.entity.es.EsBlog;
-
-import java.util.List;
+import xpu.edu.blog.entity.search.EsBlog;
 
 public interface BlogService {
 
+    /**
+     * 根据文章标题、摘要、内容进行查找
+     * @param title 文章标题
+     * @param summary 文章摘要
+     * @param content 文章内容
+     * @param pageable 分页信息
+     * @return 文章信息
+     */
     Page<EsBlog> findBlog(String title, String summary, String content, Pageable pageable);
 
+    /**
+     * 增加一篇博客
+     * @param blogInfo 博客信息
+     * @return 保存后的博客信息
+     */
     BlogInfo addBlog(BlogInfo blogInfo);
 
+    /**
+     * 获取一篇博客信息
+     * @param blogId 博客Id
+     * @return 博客信息
+     */
     BlogInfo getById(String blogId);
 
-    List<BlogInfo> getAllByUserId(String userId);
+    /**
+     * 根据博客状态（草稿、已发布、已删除）查找博客
+     * @param auditStatus 博客状态
+     * @param pageable 分页参数
+     * @return 博客分页信息
+     */
+    Page<BlogInfo> getAllByStatus(Integer auditStatus, Pageable pageable);
 
-    Page<BlogInfo> getAllByUserAndStatus(String userId, Integer auditStatus, Pageable pageable);
-
+    /**
+     * 删除一篇博客
+     * @param blogId 要删除的博客Id
+     */
     void deleteBlog(String blogId);
 }

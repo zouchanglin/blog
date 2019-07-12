@@ -1,4 +1,4 @@
-package xpu.edu.blog.entity.es;
+package xpu.edu.blog.entity.search;
 
 import lombok.Data;
 import org.springframework.data.elasticsearch.annotations.Document;

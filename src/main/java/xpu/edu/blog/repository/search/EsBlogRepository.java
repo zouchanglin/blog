@@ -1,9 +1,9 @@
-package xpu.edu.blog.repository.es;
+package xpu.edu.blog.repository.search;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
-import xpu.edu.blog.entity.es.EsBlog;
+import xpu.edu.blog.entity.search.EsBlog;
 
 public interface EsBlogRepository extends ElasticsearchRepository<EsBlog, String> {
     /**

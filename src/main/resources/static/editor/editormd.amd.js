@@ -4440,11 +4440,11 @@
             });
 
             var userCanSelect = function (obj) {
-                obj.removeClass(classPrefix + "user-unselect").off("selectstart");
+                obj.removeClass(classPrefix + "admin-unselect").off("selectstart");
             };
 
             var userUnselect = function (obj) {
-                obj.addClass(classPrefix + "user-unselect").on("selectstart", function(event) { // selectstart for IE                        
+                obj.addClass(classPrefix + "admin-unselect").on("selectstart", function(event) { // selectstart for IE
                     return false;
                 });
             };

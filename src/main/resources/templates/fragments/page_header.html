@@ -10,33 +10,11 @@
     <script th:src="@{/bootstrap/js/bootstrap.min.js}" src="../../static/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
-<body style="padding: 0">
-<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="header_page(userId)" style="padding-bottom: 0">
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="page_header" style="padding-bottom: 0">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <!--/*@thymesVar id="userId" type="java.lang.String"*/-->
-                    <a th:text="${userId}==null ? '登录':'个人中心'" th:href="${userId}==null ? '/login':'/user/center'">登录</a></li>
-                <li>
-                    <!--/*@thymesVar id="userId" type="java.lang.String"*/-->
-                    <a th:text="${userId}==null ? '注册':'注销'" th:href="${userId}==null ? '/register':'/user/logout'">注册</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a style="padding: 10px 0 0;">
-                        <img th:src="@{/code.ico}" src="../../static/code.ico" style="height: 30px; width: 40px">
-                    </a>
-                </li>
+            <ul class="nav navbar-nav">
                 <li><a href="#">计算机科学</a></li>
                 <li><a href="#">编程</a></li>
                 <li><a href="#">算法</a></li>
@@ -51,7 +29,7 @@
                 <li><a href="#">杂谈</a></li>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group" style="text-align: right; width: 100px">
-                        <input type="text" style="width: 130px" class="form-control" placeholder="搜索"/>
+                        <input type="text" style="width: 200px" class="form-control" placeholder="想搜点啥呢"/>
                     </div>
                 </form>
             </ul>

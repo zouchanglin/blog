@@ -13,7 +13,7 @@
 
   // Collect all Dockerfile directives
   var instructions = ["from", "maintainer", "run", "cmd", "expose", "env",
-                      "add", "copy", "entrypoint", "volume", "user",
+                      "add", "copy", "entrypoint", "volume", "admin",
                       "workdir", "onbuild"],
       instructionRegex = "(" + instructions.join('|') + ")",
       instructionOnlyLine = new RegExp(instructionRegex + "\\s*$", "i"),

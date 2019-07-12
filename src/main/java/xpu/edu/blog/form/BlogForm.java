@@ -10,34 +10,29 @@ public class BlogForm {
     /**
      * 文章Id
      */
-    private String blogid;
+    private String blogId;
     /**
      * 文章标题
      */
-    private String title;
+    private String blogTitle;
 
     /*
      * 文章摘要
      */
-    private String summary;
+    private String blogSummary;
 
     /**
      * 文章正文
      */
-    private String content;
+    private String blogContent;
 
     /**
      * 博客整体分类
      */
-    private Integer category;
-
-    /**
-     * 用户的自定义分类
-     */
-    private Integer user_category;
+    private Integer blogCategory;
 
     /**
      * 原创、翻译、转载
      */
-    private Integer original;
+    private Integer blogOriginal;
 }
