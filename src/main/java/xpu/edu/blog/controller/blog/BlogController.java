@@ -75,6 +75,7 @@ public class BlogController {
     public String release(BlogForm blogForm){
         log.info("【BlogController】release = {}", blogForm);
         BlogInfo blogInfo = Form2BlogInfo.blogForm2BlogInfo(blogForm);
+
         if(blogInfo.getBlogId() == null || "".equals(blogInfo.getBlogId()))
             blogInfo.setBlogId(KeyUtil.genUniqueKey());
         //设置为发布版本
@@ -90,7 +91,7 @@ public class BlogController {
     public String showSuccess(String blogId, Map<String, Object> map){
         BlogInfo blogInfo = blogService.getById(blogId);
         map.put("blogInfo", blogInfo);
-        return "user/release_success";
+        return "admin/release_success";
     }
 
     /**

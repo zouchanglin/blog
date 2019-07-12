@@ -17,123 +17,8 @@
     </script>
 </head>
 <body style="padding-top: 60px">
-<nav th:replace="fragments/header_page :: header_page(${userId})"></nav>
+<nav th:replace="fragments/page_header :: page_header"></nav>
 <div class="container-fluid">
-            <div  class="col-md-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            个人资料
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row clearfix">
-                            <div class="col-md-4 column" style="padding-right: 0">
-                                <img th:src="@{/head.png}" src="../../static/head.png" style="width: 60px; height: 60px; border-radius: 40px">
-                            </div>
-                            <div class="col-md-8 column" style="padding: 0">
-                                <div style="font-size: 18px; text-align: left; padding-top: 10px" th:text="${user_data.getUserName()}">Tim的技术博客</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <table class="table" style="border: 0; border-top: transparent">
-                            <thead>
-                            <tr>
-                                <th>
-                                    访问
-                                </th>
-                                <th>
-                                    原创
-                                </th>
-                                <th>
-                                    粉丝
-                                </th>
-                                <th>
-                                    贡献
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td th:text="${user_data.getUserRead()}">
-                                    1.3K
-                                </td>
-                                <td th:text="${user_data.getUserPages()}">
-                                    255
-                                </td>
-                                <td th:text="${user_data.getUserFans()}">
-                                    304
-                                </td>
-                                <td th:text="${user_data.getUserComment()}">
-                                    3306
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            个人分类
-                        </h3>
-                    </div>
-                    <div th:each="category: ${allCategoryUser}" class="panel-body">
-                        <a href="/blog/my_list" th:text="${category.getCategoryName()}">AAA</a><br>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            最新文章
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <a href="/blog/my_list">AAA</a><br>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="/blog/my_list">AAA</a><br>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            最热文章
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <a href="/blog/my_list">AAA</a><br>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="/blog/my_list">AAA</a><br>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            最新评论
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <a href="/blog/my_list">AAA</a><br>
-                    </div>
-                    <div class="panel-footer">
-                        <a href="/blog/my_list">AAA</a><br>
-                    </div>
-                </div>
-                <div class="panel panel-primary" id="mydiv">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            文章目录
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="mytoc">
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-9" style="background-color: transparent;">
                 <!-- 因为我们使用了dark主题，所以在容器div上加上dark的主题类，实现我们自定义的代码样式 -->
                 <h1 th:text="'《' +${blog_info.getBlogTitle()} + '》'"></h1>
@@ -144,23 +29,8 @@
 </div>
 
 <script type="text/javascript">
-
-
-    // window.onload = function (ev) {
-    //     var hei = document.body.scrollHeight;
-    //     alert(hei);
-    //     var byId = document.getElementById("mydiv");
-    //     byId.style.height = hei;
-    //     alert(hei)
-    //     byId.style.backgroundColor = "red";
-    // }
-    //window.onload = function (ev) {
-    //    $('.col-md-3').css("height",$('.col-md-9').height())
-    //}
-
     $(document).ready(function () {
         var hei = document.body.scrollHeight;
-        //TODO 文章目录结构设置
         //监听网页滚动
         // $(window).scroll(function () {
         //     console.log("clientHeight" + document.documentElement.clientHeight);
