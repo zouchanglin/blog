@@ -39,7 +39,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="panel-294012">
+                                <div class="tab-pane active" id="panel-294012" style="background-color: #ffffff">
                                     <div class="row clearfix">
                                         <div class="col-md-12 column">
                                             <table class="table">
@@ -72,7 +72,7 @@
                                                 <tr th:each="blogInfo: ${myBlogList}">
                                                     <td th:text="${blogInfo.getBlogTitle()}">
                                                     </td>
-                                                    <td th:text="${blogInfo.getCreateTime()}">
+                                                    <td th:text="${blogInfo.getCreateTimeFormat()}">
                                                         TB - Monthly
                                                     </td>
                                                     <td th:if="${blogInfo.getBlogOriginal() == 0}">
@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane" id="panel-354279">
+                                <div class="tab-pane" id="panel-354279" style="background-color: #ffffff">
                                     <div class="row clearfix">
                                         <div class="col-md-12 column">
                                             <table class="table">
@@ -157,7 +157,7 @@
                                                 <tr th:each="blogInfo: ${myBlogList2}">
                                                     <td th:text="${blogInfo.getBlogTitle()}">
                                                     </td>
-                                                    <td th:text="${blogInfo.getCreateTime()}">
+                                                    <td th:text="${blogInfo.getCreateTimeFormat()}">
                                                         TB - Monthly
                                                     </td>
                                                     <td th:if="${blogInfo.getBlogOriginal() == 0}">
@@ -207,7 +207,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane" id="panel-354277">
+                                <div class="tab-pane" id="panel-354277" style="background-color: #ffffff">
                                     <div class="row clearfix">
                                         <div class="col-md-12 column">
                                             <table class="table">
@@ -240,7 +240,7 @@
                                                 <tr th:each="blogInfo: ${myBlogList3}">
                                                     <td th:text="${blogInfo.getBlogTitle()}">
                                                     </td>
-                                                    <td th:text="${blogInfo.getCreateTime()}">
+                                                    <td th:text="${blogInfo.getCreateTimeFormat()}">
                                                         TB - Monthly
                                                     </td>
                                                     <td th:if="${blogInfo.getBlogOriginal() == 0}">

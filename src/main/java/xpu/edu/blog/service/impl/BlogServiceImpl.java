@@ -6,10 +6,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import xpu.edu.blog.entity.BlogInfo;
 import xpu.edu.blog.entity.search.EsBlog;
+import xpu.edu.blog.enums.ResultEnum;
+import xpu.edu.blog.exception.BlogException;
 import xpu.edu.blog.repository.BlogInfoRepository;
 import xpu.edu.blog.repository.search.EsBlogRepository;
 import xpu.edu.blog.service.BlogService;
 import xpu.edu.blog.service.CategoryInfoService;
+
+import java.util.Optional;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -49,5 +53,29 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public void deleteBlog(String blogId) {
         blogInfoRepository.deleteById(blogId);
+    }
+
+    @Override
+    public void blogAddLike(String blogId) {
+        Optional<BlogInfo> findResult = blogInfoRepository.findById(blogId);
+        if(findResult.isPresent()){
+            BlogInfo blogInfo = findResult.get();
+            blogInfo.setBlogLikes(blogInfo.getBlogLikes() + 1);
+            blogInfoRepository.save(blogInfo);
+        }else{
+            throw new BlogException(ResultEnum.PARAM_ERROR);
+        }
+    }
+
+    @Override
+    public void blogAddComments(String blogId) {
+        Optional<BlogInfo> findResult = blogInfoRepository.findById(blogId);
+        if(findResult.isPresent()){
+            BlogInfo blogInfo = findResult.get();
+            blogInfo.setBlogComments(blogInfo.getBlogComments() + 1);
+            blogInfoRepository.save(blogInfo);
+        }else{
+            throw new BlogException(ResultEnum.PARAM_ERROR);
+        }
     }
 }

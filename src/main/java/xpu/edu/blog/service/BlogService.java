@@ -44,4 +44,16 @@ public interface BlogService {
      * @param blogId 要删除的博客Id
      */
     void deleteBlog(String blogId);
+
+    /**
+     * 博客增加一个点赞量
+     * @param blogId 要点赞的博客
+     */
+    void blogAddLike(String blogId);
+
+    /**
+     * 博客增加一个阅读数
+     * @param blogId 博客Id
+     */
+    void blogAddComments(String blogId);
 }

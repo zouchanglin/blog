@@ -16,48 +16,186 @@
     <script>
     </script>
 </head>
-<body style="padding-top: 60px">
+<body style="padding-top: 0; background-color: white">
 <nav th:replace="fragments/page_header :: page_header"></nav>
-<div class="container-fluid">
-            <div class="col-md-9" style="background-color: transparent;">
-                <!-- 因为我们使用了dark主题，所以在容器div上加上dark的主题类，实现我们自定义的代码样式 -->
-                <h1 th:text="'《' +${blog_info.getBlogTitle()} + '》'"></h1>
-                <div id="testEditorMdview" class="content editormd-preview-container">
-                    <textarea id="appendTest" style="display: none" th:text="${blog_info.getBlogContent()}"></textarea>
+<div class="container">
+            <div class="col-md-9">
+<!--                <div>你现在所在的位置是： 编程 > 文章精选 </div>-->
+                <div>
+                    <h2 th:text="${blog_info.getBlogTitle()}">Dark类源码剖析</h2>
+                </div>
+                <div>
+                    <span>
+                        <img style="height: 30px;width: 30px; border-radius: 15px" th:src="@{/head.png}" src="../../static/head.png" alt="">
+                    </span>
+                    <span th:text="${blog_info.getCreateTimeFormat()}">
+                        2019/09/09 23:45:11
+                    </span>&emsp;
+                    <span th:text="'阅读次数：' + ${blog_info.getBlogReading()}">
+                        阅读次数：8901
+                    </span>&emsp;
+                    <span th:text="'评论数量：' + ${blog_info.getBlogComments()}">
+                        21
+                    </span>
+                </div>
+                <div id="pageContentView" class="content editormd-preview-container" style="padding: 0;margin-top: 10px">
+                    <label for="appendTest"></label>
+                    <textarea id="appendTest" style="display: none;" th:text="${blog_info.getBlogContent()}"></textarea>
+                </div>
+                <div style="text-align: center; margin-top: 15px">
+                    <label for="blogId"></label>
+                    <input id="blogId" style="display: none" th:value="${blog_info.getBlogId()}"/>
+                    <p>
+                        <button id="blog_like" class="btn btn-danger" th:text="'&nbsp;很赞哦！' + ${blog_info.getBlogLikes()} + '&nbsp;'" onclick="like_page()">很赞❤️</button>
+                    </p>
+                </div>
+                <!-- 评论发布 -->
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#">评论区</a>
+                        </li>
+                    </ul>
+                    <form role="form">
+                        <div>
+                            <input id="commentName" class="form-control" type="text" style="width: 50%; margin-top: 10px" placeholder="昵称">
+                            <input id="commentEmail" class="form-control" type="email" style="width: 50%; margin-top: 10px" placeholder="邮箱(可选填)">
+                        </div>
+                        <label for="commentContent"></label>
+                        <textarea id="commentContent" rows="4" class="form-control" placeholder="写下你的精彩评论吧！"></textarea>
+                        <button type="submit" class="btn btn-default" style="margin-top: 5px" onclick="addOneComment()">评论</button>
+                    </form>
+                </div>
+
+                <!-- 评论展示 -->
+                <div style="margin-top: 20px;">
+                    <ul class="nav nav-tabs" style="margin-bottom: 20px">
+                        <li class="active">
+                            <a>精选评论</a>
+                        </li>
+                    </ul>
+                    <div th:each="comment : ${comment_info}" style="margin-bottom: 8px; ">
+                        <div>
+                            <span>
+                                <img style="height: 30px;width: 30px; border-radius: 10px" th:src="@{/head.png}" src="../../static/head.png" alt="">
+                            </span>
+                            <span th:text="${comment.getCommentName()}">Tim</span>&nbsp;&nbsp;
+                            <span th:text="${comment.getCreateTimeFormat()}" style="font-size: small">2019/11/21</span>
+                            <span> &nbsp;&nbsp;&nbsp; <a th:onclick="'javascript:replyComment(\''+ ${comment.getCommentId()} +'\')'"> 回复 </a></span>
+                        </div>
+                        <div style="margin-top: 5px;border: 1px solid #e6db74;padding: 5px; border-radius: 5px">
+                            <div th:text="${comment.getCommentContent()}" >在读完本文之后，相信你应该了解了什么是Java内存模型、Java内存模型的作用以及Java中内存模型做了什么事情等。关于Java中这些和内存模型有关的关键字，希望读者还可以继续深入学习，并且自己写几个例子亲自体会一下。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 40px"></div>
+            </div>
+            <div class="col-md-3" style="margin-top: 30px">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            推荐文章
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        AAAA
+                    </div>
+                    <div class="panel-footer">
+                        BBBB
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            最新文章
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <li>xxx</li>
+                        <li>xxx</li>
+                        <li>xxx</li>
+                        <li>xxx</li>
+                        <li>xxx</li>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            最新评论
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        EEEE
+                    </div>
+                    <div class="panel-footer">
+                        FFFF
+                    </div>
                 </div>
             </div>
 </div>
-
+<nav th:replace="fragments/page_footer :: page_footer"></nav>
 <script type="text/javascript">
-    $(document).ready(function () {
-        var hei = document.body.scrollHeight;
-        //监听网页滚动
-        // $(window).scroll(function () {
-        //     console.log("clientHeight" + document.documentElement.clientHeight);
-        //     var oTop = document.body.scrollTop == 0?document.documentElement.scrollTop:document.body.scrollTop;//偏移量
-        //     console.log("oTop"+oTop);
-        //     console.log("网页正文 " + hei)
-        //     var mydiv = document.getElementById("mydiv");
-        //     console.log(mydiv != null);
-        //     mydiv.style.marginTop = oTop - 400 + "px";
-        //     if(oTop == 0){
-        //         mydiv.style.paddingTop = 0 + "px";
-        //     }
-        // })
-    });
-
     //转换开始,第一个参数是上面的div的id
-    editormd.markdownToHTML("testEditorMdview", {
+    editormd.markdownToHTML("pageContentView", {
         htmlDecode: "style,script,iframe", //可以过滤标签解码
         emoji: true,
         taskList:true,
-        tex: true,               // 默认不解析
-        flowChart:true,         // 默认不解析
-        sequenceDiagram:true,  // 默认不解析
+        tex: true,  // 默认不解析
+        flowChart:true, // 默认不解析
+        sequenceDiagram:true, // 默认不解析
         toc: true,
         tocTitle: "文章目录",
         tocContainer: $("#mytoc")
     });
+
+    //-----------------------------------------------------------------------
+    function like_page(){
+        var blogId = $("#blogId").val();
+        $.get({
+            url: "/show/like",
+            data: {"blogId":blogId},
+            success:function (data) {
+                document.getElementById("blog_like").textContent = "    很赞哦！" + data + "    ";
+            },
+            error:function () {
+                alert("请检查网络!")
+            }
+        });
+    }
+
+
+    //-----------------------------------------------------------------------
+    var replyId_local;
+    function addOneComment() {
+        var blogId = $("#blogId").val();
+        var commentName = $("#commentName").val();
+        var commentEmail = $("#commentEmail").val();
+        var commentContent = $("#commentContent").val();
+        $.post({
+            url: "/show/comment",
+            data: {"blogId":blogId,
+            "commentName":commentName,
+            "commentEmail":commentEmail,
+            "commentContent":commentContent,
+            "replyId":replyId_local},
+            success:function (data) {
+                replyId_local = null;
+                //alert(data);
+            },
+            error:function (data) {
+                replyId_local = null;
+                //alert("失败！")
+            }
+        });
+    }
+
+    //-----------------------------------------------------------------------
+    function replyComment(replyId) {
+        //alert(replyId);
+        document.getElementById("commentContent").focus();
+        replyId_local = replyId;
+    }
 </script>
 </body>
 </html>

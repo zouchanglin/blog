@@ -130,7 +130,7 @@ public class BlogController {
     public String edit(Map<String, Object> map){
         map.put("allCategory", categoryService.getAllCategory());
         map.put("blogInfo", new BlogInfo());
-        return "user/edit_blog";
+        return "admin/edit_blog";
     }
 
     /**
