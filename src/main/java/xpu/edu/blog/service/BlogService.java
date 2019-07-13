@@ -52,8 +52,14 @@ public interface BlogService {
     void blogAddLike(String blogId);
 
     /**
-     * 博客增加一个阅读数
+     * 博客增加一个评论数
      * @param blogId 博客Id
      */
     void blogAddComments(String blogId);
+
+    /**
+     * 博客增加一个阅读数
+     * @param blogId 博客Id
+     */
+    void blogAddReading(String blogId);
 }

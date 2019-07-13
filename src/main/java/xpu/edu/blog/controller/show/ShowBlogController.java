@@ -28,6 +28,8 @@ public class ShowBlogController {
                               Map<String, Object> map){
         BlogInfo blogInfo = blogService.getById(blogid);
         if(blogInfo == null) return "error/404";
+        blogService.blogAddReading(blogid);
+
         map.put("blog_info", blogInfo);
         List<CommentInfo> comment_info = commentService.getCommentsByBlog(blogid);
         map.put("comment_info", comment_info);

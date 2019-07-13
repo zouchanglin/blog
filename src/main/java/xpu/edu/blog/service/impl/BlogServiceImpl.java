@@ -78,4 +78,16 @@ public class BlogServiceImpl implements BlogService {
             throw new BlogException(ResultEnum.PARAM_ERROR);
         }
     }
+
+    @Override
+    public void blogAddReading(String blogId) {
+        Optional<BlogInfo> findResult = blogInfoRepository.findById(blogId);
+        if(findResult.isPresent()){
+            BlogInfo blogInfo = findResult.get();
+            blogInfo.setBlogReading(blogInfo.getBlogReading() + 1);
+            blogInfoRepository.save(blogInfo);
+        }else{
+            throw new BlogException(ResultEnum.PARAM_ERROR);
+        }
+    }
 }
