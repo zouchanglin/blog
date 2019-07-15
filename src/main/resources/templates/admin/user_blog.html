@@ -110,14 +110,8 @@
                                     <div class="row clearfix">
                                         <div class="col-md-12 column">
                                             <ul class="pagination">
-                                                <li>
-                                                    <a href="#">Prev</a>
-                                                </li>
                                                 <li th:each="pageNo : ${#numbers.sequence(0, myBlogListPage - 1)}" >
                                                     <a th:href="@{'/blog/my_list?pageIndex='+ ${pageNo}}" th:text="${pageNo}">Prev</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Next</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -193,14 +187,8 @@
                                     <div class="row clearfix">
                                         <div class="col-md-12 column">
                                             <ul class="pagination">
-                                                <li>
-                                                    <a href="#">Prev</a>
-                                                </li>
                                                 <li th:each="pageNo : ${#numbers.sequence(0, myBlogListPage2 - 1)}" >
                                                     <a th:href="@{'/blog/my_list?pageIndex='+ ${pageNo}}" th:text="${pageNo}">Prev</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Next</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -278,14 +266,8 @@
                                     <div class="row clearfix">
                                         <div class="col-md-12 column">
                                             <ul class="pagination">
-                                                <li>
-                                                    <a href="#">Prev</a>
-                                                </li>
                                                 <li th:each="pageNo : ${#numbers.sequence(0, myBlogListPage3 - 1)}" >
                                                     <a th:href="@{'/blog/my_list?pageIndex='+ ${pageNo}}" th:text="${pageNo}">Prev</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Next</a>
                                                 </li>
                                             </ul>
                                         </div>

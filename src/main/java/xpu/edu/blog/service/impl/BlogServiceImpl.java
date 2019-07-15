@@ -1,11 +1,15 @@
 package xpu.edu.blog.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import xpu.edu.blog.entity.BlogInfo;
 import xpu.edu.blog.entity.search.EsBlog;
+import xpu.edu.blog.enums.BlogAuditEnum;
 import xpu.edu.blog.enums.ResultEnum;
 import xpu.edu.blog.exception.BlogException;
 import xpu.edu.blog.repository.BlogInfoRepository;
@@ -13,9 +17,11 @@ import xpu.edu.blog.repository.search.EsBlogRepository;
 import xpu.edu.blog.service.BlogService;
 import xpu.edu.blog.service.CategoryInfoService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
@@ -89,5 +95,22 @@ public class BlogServiceImpl implements BlogService {
         }else{
             throw new BlogException(ResultEnum.PARAM_ERROR);
         }
+    }
+
+    @Override
+    public List<BlogInfo> findSomeBlogByThis(BlogInfo blogInfo) {
+        Sort sort = new Sort(Sort.Direction.DESC, "blogReading");
+        Pageable pageable = PageRequest.of(0, 5, sort);
+        Page<BlogInfo> reading = blogInfoRepository.findAllByBlogCategoryAndBlogAuditAndBlogIdNot(blogInfo.getBlogCategory(),
+                BlogAuditEnum.RELEASE.getCode(),blogInfo.getBlogId(), pageable);
+        return reading.getContent();
+    }
+
+    @Override
+    public List<BlogInfo> findSomeBlogLatest(BlogInfo blogInfo) {
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        Pageable pageable = PageRequest.of(0, 5, sort);
+        Page<BlogInfo> createTime = blogInfoRepository.findAllByBlogAuditAndBlogIdIsNot(BlogAuditEnum.RELEASE.getCode(),blogInfo.getBlogId(), pageable);
+        return createTime.getContent();
     }
 }

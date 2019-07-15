@@ -33,6 +33,10 @@ public class ShowBlogController {
         map.put("blog_info", blogInfo);
         List<CommentInfo> comment_info = commentService.getCommentsByBlog(blogid);
         map.put("comment_info", comment_info);
+        List<BlogInfo> like_blog = blogService.findSomeBlogByThis(blogInfo);
+        map.put("like_blog", like_blog);
+        List<BlogInfo> new_blog = blogService.findSomeBlogLatest(blogInfo);
+        map.put("new_blog", new_blog);
         return "show/show_one_blog";
     }
 

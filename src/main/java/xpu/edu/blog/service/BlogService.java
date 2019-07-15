@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import xpu.edu.blog.entity.BlogInfo;
 import xpu.edu.blog.entity.search.EsBlog;
 
+import java.util.List;
+
 public interface BlogService {
 
     /**
@@ -62,4 +64,16 @@ public interface BlogService {
      * @param blogId 博客Id
      */
     void blogAddReading(String blogId);
+
+    /**
+     * 根据一篇博客查找出同类别的博客
+     * @param blogInfo 已知博客信息
+     */
+    List<BlogInfo> findSomeBlogByThis(BlogInfo blogInfo);
+
+    /**
+     * 获取最新博客列表
+     * @return 最新博客列表
+     */
+    List<BlogInfo> findSomeBlogLatest(BlogInfo blogInfo);
 }

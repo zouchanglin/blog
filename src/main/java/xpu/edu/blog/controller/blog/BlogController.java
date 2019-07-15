@@ -40,18 +40,18 @@ public class BlogController {
         Page<BlogInfo> myBlogList2 = blogService.getAllByStatus(BlogAuditEnum.DRAFT.getCode(), PageRequest.of(pageIndex, 10));
         Page<BlogInfo> myBlogList3 = blogService.getAllByStatus(BlogAuditEnum.RECYCLE.getCode(), PageRequest.of(pageIndex, 10));
 
-        log.info("myBlogList={}", myBlogList.getContent());
-        log.info("myBlogList2={}", myBlogList2.getContent());
-        log.info("myBlogList3={}", myBlogList3.getContent());
+        log.info("myBlogList={}", myBlogList.getContent().size());
+        log.info("myBlogList2={}", myBlogList2.getContent().size());
+        log.info("myBlogList3={}", myBlogList3.getContent().size());
 
         map.put("myBlogList", myBlogList.getContent());
-        map.put("myBlogListPage", myBlogList.getTotalPages() >= 0 ? 1:myBlogList.getTotalPages());
+        map.put("myBlogListPage", myBlogList.getTotalPages());
 
         map.put("myBlogList2", myBlogList2.getContent());
-        map.put("myBlogListPage2", myBlogList2.getTotalPages()>= 0 ? 1:myBlogList2.getTotalPages());
+        map.put("myBlogListPage2", myBlogList2.getTotalPages());
 
         map.put("myBlogList3", myBlogList3.getContent());
-        map.put("myBlogListPage3", myBlogList3.getTotalPages()>= 0 ? 1:myBlogList3.getTotalPages());
+        map.put("myBlogListPage3", myBlogList3.getTotalPages());
 
         return "admin/user_blog";
     }
