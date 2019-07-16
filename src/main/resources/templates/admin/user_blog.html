@@ -70,7 +70,9 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr th:each="blogInfo: ${myBlogList}">
-                                                    <td th:text="${blogInfo.getBlogTitle()}">
+                                                    <td>
+                                                        <a th:href="'/show/blog/' + ${blogInfo.getBlogId()}"
+                                                           th:text="${blogInfo.getBlogTitle()}"></a>
                                                     </td>
                                                     <td th:text="${blogInfo.getCreateTimeFormat()}">
                                                         TB - Monthly
@@ -149,7 +151,9 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr th:each="blogInfo: ${myBlogList2}">
-                                                    <td th:text="${blogInfo.getBlogTitle()}">
+                                                    <td>
+                                                        <a th:href="'/show/blog/' + ${blogInfo.getBlogId()}"
+                                                           th:text="${blogInfo.getBlogTitle()}"></a>
                                                     </td>
                                                     <td th:text="${blogInfo.getCreateTimeFormat()}">
                                                         TB - Monthly
@@ -226,7 +230,9 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr th:each="blogInfo: ${myBlogList3}">
-                                                    <td th:text="${blogInfo.getBlogTitle()}">
+                                                    <td>
+                                                        <a th:href="'/show/blog/' + ${blogInfo.getBlogId()}"
+                                                           th:text="${blogInfo.getBlogTitle()}"></a>
                                                     </td>
                                                     <td th:text="${blogInfo.getCreateTimeFormat()}">
                                                         TB - Monthly

@@ -76,4 +76,7 @@ public interface BlogService {
      * @return 最新博客列表
      */
     List<BlogInfo> findSomeBlogLatest(BlogInfo blogInfo);
+
+
+    List<BlogInfo> findAllBlog();
 }

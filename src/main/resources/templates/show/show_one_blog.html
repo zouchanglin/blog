@@ -92,7 +92,7 @@
                 <div style="margin-bottom: 40px"></div>
             </div>
             <div class="col-md-3" style="margin-top: 30px">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             推荐文章
@@ -104,31 +104,45 @@
                         </li>
                     </div>
                 </div>
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             最新文章
                         </h3>
                     </div>
                     <div class="panel-body" th:each="blog : ${new_blog}" style="padding-left: 10px;padding-top: 5px; padding-bottom: 5px">
-                        <li >
+                        <li>
                             <a th:href="@{'/show/blog/' + ${blog.getBlogId()}}" th:text="${blog.getBlogTitle()}">xxx</a>
                         </li>
                     </div>
                 </div>
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            最新评论
+                            分类信息
+                        </h3>
+                    </div>
+                    <div class="panel-body" th:each="blog : ${new_blog}" style="padding-left: 10px;padding-top: 5px; padding-bottom: 5px">
+                        <li>
+                            <a th:href="@{'/show/blog/' + ${blog.getBlogId()}}" th:text="${blog.getBlogTitle()}">xxx</a>
+                        </li>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            站点信息
                         </h3>
                     </div>
                     <div class="panel-body">
-                        EEEE
-                    </div>
-                    <div class="panel-footer">
-                        FFFF
+                        <p><strong>建站时间</strong>    2019-07-01</p>
+                        <p><strong>网站架构</strong>    SpringBoot + Nginx</p>
+                        <p><strong>文章统计</strong>    44篇文章</p>
                     </div>
                 </div>
+
             </div>
 </div>
 <nav th:replace="fragments/page_footer :: page_footer"></nav>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import xpu.edu.blog.entity.CategoryInfo;
 import xpu.edu.blog.enums.ResultEnum;
 import xpu.edu.blog.exception.BlogException;
+import xpu.edu.blog.repository.CategoryDetailRepository;
 import xpu.edu.blog.repository.CategoryInfoRepository;
 import xpu.edu.blog.service.CategoryInfoService;
 
@@ -17,6 +18,9 @@ import java.util.Optional;
 public class CategoryInfoServiceImpl implements CategoryInfoService {
     @Autowired
     private CategoryInfoRepository categoryInfoRep;
+
+    @Autowired
+    private CategoryDetailRepository categoryDetailRepository;
 
     @Override
     public List<CategoryInfo> getAllCategory() {

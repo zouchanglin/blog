@@ -78,8 +78,8 @@
                         <div class="col-sm-10" style="margin: 0">
                             <select id="category" name="" style="width: 40%; height: 40px;" th:selected="${blogInfo.getBlogCategory()}">
                                 　　<option th:each="cate:${allCategory}"
-                                           th:value="${cate.getCategoryId()}"
-                                           th:text="${cate.getCategoryName()}">XXX</option>
+                                           th:value="${cate.getCategoryDetail()}"
+                                           th:text="${cate.getDetailName()}">XXX</option>
                             </select>
 
                             <!-- 修改 -->

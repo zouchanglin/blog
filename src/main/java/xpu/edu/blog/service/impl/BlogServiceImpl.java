@@ -15,6 +15,7 @@ import xpu.edu.blog.exception.BlogException;
 import xpu.edu.blog.repository.BlogInfoRepository;
 import xpu.edu.blog.repository.search.EsBlogRepository;
 import xpu.edu.blog.service.BlogService;
+import xpu.edu.blog.service.CategoryDetailService;
 import xpu.edu.blog.service.CategoryInfoService;
 
 import java.util.List;
@@ -33,6 +34,9 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private CategoryInfoService categoryInfoService;
 
+    @Autowired
+    private CategoryDetailService categoryDetailService;
+
 
     @Override
     public Page<EsBlog> findBlog(String title, String summary, String content, Pageable pageable) {
@@ -41,7 +45,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public BlogInfo addBlog(BlogInfo blogInfo) {
-        if(blogInfo.getBlogCategory() != null)
+        if(blogInfo.getBlogCategory() != null){
+
+        }
             categoryInfoService.addOneCategoryNum(blogInfo.getBlogCategory());
         return blogInfoRepository.save(blogInfo);
     }
@@ -100,7 +106,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<BlogInfo> findSomeBlogByThis(BlogInfo blogInfo) {
         Sort sort = new Sort(Sort.Direction.DESC, "blogReading");
-        Pageable pageable = PageRequest.of(0, 5, sort);
+        Pageable pageable = PageRequest.of(0, 8, sort);
         Page<BlogInfo> reading = blogInfoRepository.findAllByBlogCategoryAndBlogAuditAndBlogIdNot(blogInfo.getBlogCategory(),
                 BlogAuditEnum.RELEASE.getCode(),blogInfo.getBlogId(), pageable);
         return reading.getContent();
@@ -109,8 +115,13 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<BlogInfo> findSomeBlogLatest(BlogInfo blogInfo) {
         Sort sort = new Sort(Sort.Direction.DESC, "createTime");
-        Pageable pageable = PageRequest.of(0, 5, sort);
+        Pageable pageable = PageRequest.of(0, 8, sort);
         Page<BlogInfo> createTime = blogInfoRepository.findAllByBlogAuditAndBlogIdIsNot(BlogAuditEnum.RELEASE.getCode(),blogInfo.getBlogId(), pageable);
         return createTime.getContent();
+    }
+
+    @Override
+    public List<BlogInfo> findAllBlog() {
+        return blogInfoRepository.findAll();
     }
 }

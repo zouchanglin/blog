@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import xpu.edu.blog.entity.BlogInfo;
 import xpu.edu.blog.entity.CommentInfo;
 import xpu.edu.blog.service.BlogService;
+import xpu.edu.blog.service.CategoryDetailService;
 import xpu.edu.blog.service.CommentService;
 
 import java.util.List;
@@ -21,6 +22,9 @@ public class ShowBlogController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private CategoryDetailService detailService;
 
 
     @GetMapping("/blog/{blogid}")
@@ -37,6 +41,13 @@ public class ShowBlogController {
         map.put("like_blog", like_blog);
         List<BlogInfo> new_blog = blogService.findSomeBlogLatest(blogInfo);
         map.put("new_blog", new_blog);
+
+        //博客数量
+        int blogCount = blogService.findAllBlog().size();
+        map.put("blogCount", blogCount);
+
+
+
         return "show/show_one_blog";
     }
 

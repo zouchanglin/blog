@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import xpu.edu.blog.config.FileUpLoadConfig;
 import xpu.edu.blog.convert.Form2BlogInfo;
 import xpu.edu.blog.entity.BlogInfo;
-import xpu.edu.blog.entity.CategoryInfo;
 import xpu.edu.blog.entity.search.EsBlog;
 import xpu.edu.blog.enums.BlogAuditEnum;
 import xpu.edu.blog.form.BlogForm;
 import xpu.edu.blog.service.BlogService;
-import xpu.edu.blog.service.CategoryInfoService;
+import xpu.edu.blog.service.CategoryDetailService;
 import xpu.edu.blog.utils.KeyUtil;
 
 import java.util.List;
@@ -28,10 +27,10 @@ public class BlogController {
     private BlogService blogService;
 
     @Autowired
-    private CategoryInfoService categoryService;
+    private FileUpLoadConfig fileUpLoadConfig;
 
     @Autowired
-    private FileUpLoadConfig fileUpLoadConfig;
+    private CategoryDetailService categoryDetailService;
 
     @GetMapping("/my_list")
     public String myBlogList(Map<String, Object> map,
@@ -67,6 +66,8 @@ public class BlogController {
         return blog.getContent();
     }
 
+
+    //TODO 修复此处BUG
     /**
      * 发布/修改博客
      */
@@ -128,7 +129,8 @@ public class BlogController {
      */
     @GetMapping("/edit")
     public String edit(Map<String, Object> map){
-        map.put("allCategory", categoryService.getAllCategory());
+        //map.put("allCategory", categoryService.getAllCategory());
+        map.put("allCategory", categoryDetailService.findAll());
         map.put("blogInfo", new BlogInfo());
         return "admin/edit_blog";
     }
@@ -138,8 +140,8 @@ public class BlogController {
      */
     @GetMapping("/edit_update")
     public String edit_update(Map<String, Object> map, @RequestParam("blogId") String blogId){
-        List<CategoryInfo> allCategory = categoryService.getAllCategory();
-        map.put("allCategory", allCategory);
+        //List<CategoryInfo> allCategory = categoryService.getAllCategory();
+        map.put("allCategory", categoryDetailService.findAll());
         map.put("blogInfo", blogService.getById(blogId));
         return "admin/edit_blog";
     }
