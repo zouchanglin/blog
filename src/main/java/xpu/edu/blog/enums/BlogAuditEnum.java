@@ -2,6 +2,9 @@ package xpu.edu.blog.enums;
 
 import lombok.Getter;
 
+/*
+ * 博客的状态
+ */
 @Getter
 public enum BlogAuditEnum {
     DRAFT(0, "草稿"),

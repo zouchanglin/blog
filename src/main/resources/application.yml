@@ -24,10 +24,10 @@ spring:
 server:
   servlet:
     context-path: /
-  port: 8080
+  port: 8081
 
 fileupload:
-  blogUrl: http://localhost:8080
+  blogUrl: http://localhost:8081
   imgPath: /Users/zouchanglin/Desktop/blog_img/
 
 #fileupload:
