@@ -1,3 +1,7 @@
+# 注意
+本项目已经迁移至新项目： https://github.com/zouchanglin/journey
+本项目不再维护，请移步至新的项目！
+
 # 非结构化数据检索
 * 顺序扫描法（Serial Scanning） 适合小数据量的搜索
 * 全文搜索（Full-text Search）将非结构化的一部分数据组成结构化的数据，建立索引
